@@ -7,7 +7,7 @@
 #     https://docs.scrapy.org/en/latest/topics/downloader-middleware.html
 #     https://docs.scrapy.org/en/latest/topics/spider-middleware.html
 
-BOT_NAME = 'jobscrapper_scrapy'
+BOT_NAME = 'jobfinder_scrapy'
 
 SPIDER_MODULES = ['jobscrapper_scrapy.spiders']
 NEWSPIDER_MODULE = 'jobscrapper_scrapy.spiders'
@@ -18,6 +18,7 @@ NEWSPIDER_MODULE = 'jobscrapper_scrapy.spiders'
 
 # Obey robots.txt rules
 ROBOTSTXT_OBEY = True
+#PROXY_POOL_ENABLED = True
 
 # Configure maximum concurrent requests performed by Scrapy (default: 16)
 #CONCURRENT_REQUESTS = 32
@@ -53,7 +54,10 @@ ROBOTSTXT_OBEY = True
 #DOWNLOADER_MIDDLEWARES = {
 #    'jobscrapper_scrapy.middlewares.JobscrapperScrapyDownloaderMiddleware': 543,
 #}
-
+#DOWNLOADER_MIDDLEWARES = {
+#    'scrapy_proxy_pool.middlewares.ProxyPoolMiddleware': 610,
+#    'scrapy_proxy_pool.middlewares.BanDetectionMiddleware': 620
+#}
 # Enable or disable extensions
 # See https://docs.scrapy.org/en/latest/topics/extensions.html
 #EXTENSIONS = {
