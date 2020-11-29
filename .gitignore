@@ -1,2 +1,3 @@
 .idea/
 jobscrapper_scrapy/*.csv
+jobscrapper_scrapy/*__pycache__*
