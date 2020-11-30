@@ -7,9 +7,9 @@ cd jobscrapper_scrapy
 # Have to rewite to accept and pass parameters
 
 scrapy crawl indeed -O ../Data/temp/indeed.csv
-#scrapy crawl simplyhired -O ../Data/temp/simplyhired.csv
-#scrapy crawl workopolis -O ../Data/temp/workopolis.csv
-#scrapy crawl wowjobs -O ../Data/temp/wowjobs.csv
+scrapy crawl simplyhired -O ../Data/temp/simplyhired.csv
+scrapy crawl workopolis -O ../Data/temp/workopolis.csv
+scrapy crawl wowjobs -O ../Data/temp/wowjobs.csv
 
 
 # Cleaning the data

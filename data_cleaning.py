@@ -1,7 +1,7 @@
 import pandas as pd
 
 # List of files to be cleaned
-file_list = ['indeed.csv']
+file_list = ['indeed.csv','workopolis.csv','simplyhired.csv','wowjobs.csv']
 
 
 def arrange_columns(df_data):
