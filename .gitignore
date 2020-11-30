@@ -1,3 +1,7 @@
 .idea/
 jobscrapper_scrapy/*.csv
+<<<<<<< HEAD
+jobscrapper_scrapy/*__pycache__*
+=======
 *__pycache__/
+>>>>>>> 4b56234404765dcb8a424f13fba89616eb94fddd
