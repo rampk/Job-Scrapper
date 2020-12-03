@@ -13,7 +13,8 @@ scrapy crawl wowjobs -O ../Data/temp/wowjobs.csv
 
 
 # Cleaning the data
-python ../data_cleaning.py
+cd ../database_operations
+python loading_database.py "admin"
 
 
-#$SHELL
+$SHELL
