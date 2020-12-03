@@ -7,14 +7,15 @@ from data_transformation import unique_jobs
 from datetime import datetime
 
 
-def load_transaction(user, current_transaction, current_time):
+def load_transaction(user, rows_fetched, unique_rows, current_transaction, current_time):
     # connecting to the db
     db_connection = sqlite3.connect('../Data/Database/job_database.db')
     db_cursor = db_connection.cursor()
 
     # insert current transaction details
-    insert_record = (current_transaction, user, current_time, current_time)
-    db_cursor.execute('insert into transaction_details values (?,?,?,?)', insert_record)
+    insert_record = (current_transaction, user, rows_fetched, unique_rows,
+                     current_time, current_time)
+    db_cursor.execute('insert into transaction_details values (?,?,?,?,?,?)', insert_record)
     db_connection.commit()
     db_connection.close()
 
@@ -22,6 +23,7 @@ def load_transaction(user, current_transaction, current_time):
 def load_create_jobs(user):
     # arrange the columns and return all records as single file
     job_data = arrange_columns()
+    rows_fetched = job_data.shape[0]
 
     # connect to the database
     db_connection = sqlite3.connect('../Data/Database/job_database.db')
@@ -30,6 +32,7 @@ def load_create_jobs(user):
     # Check the DB and extract the unique jobs
     job_links = pd.read_sql('select job_link from job_details', db_connection)
     unique_job_data = unique_jobs(job_links, job_data)
+    unique_rows = unique_job_data.shape[0]
 
     # saving the final output
     unique_job_data.to_csv('../Data/final/new_jobs.csv', index=False)
@@ -41,7 +44,7 @@ def load_create_jobs(user):
     current_time = datetime.now().strftime("%d/%m/%Y %H:%M:%S")
 
     # insert transaction details
-    load_transaction(user, current_transaction, current_time)
+    load_transaction(user, rows_fetched, unique_rows, current_transaction, current_time)
 
     # writing the transaction details to the dataframe
     unique_job_data['transaction_id'] = current_transaction
