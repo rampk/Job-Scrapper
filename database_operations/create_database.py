@@ -26,6 +26,8 @@ db_cursor.execute("""CREATE TABLE job_details(
 db_cursor.execute("""CREATE TABLE transaction_details(
                     transaction_id int NOT NULL PRIMARY KEY,
                     user_id text,
+                    transaction_started int,
+                    transaction_ended int,
                     records_fetched int,
                     unique_records int,
                     created_date_time text,
@@ -34,8 +36,8 @@ db_cursor.execute("""CREATE TABLE transaction_details(
 
 # Create a zeroth record for transaction, so future one starts with 1
 current_time = datetime.now().strftime("%d/%m/%Y %H:%M:%S")
-insert_record = (0, 'admin', 0, 0, current_time, current_time)
-db_cursor.execute('insert into transaction_details values (?,?,?,?,?,?)', insert_record)
+insert_record = (0, 'admin', 0, 0, 0, 0, current_time, current_time)
+db_cursor.execute('insert into transaction_details values (?,?,?,?,?,?,?,?)', insert_record)
 
 # Commit the changes
 db_connection.commit()

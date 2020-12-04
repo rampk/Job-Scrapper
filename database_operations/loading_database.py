@@ -1,4 +1,3 @@
-import sys
 import sqlite3
 import pandas as pd
 from os import listdir, remove
@@ -7,20 +6,25 @@ from data_transformation import unique_jobs
 from datetime import datetime
 
 
-def load_transaction(user, rows_fetched, unique_rows, current_transaction, current_time):
+def end_transaction(rows_fetched, unique_rows, current_transaction, current_time):
     # connecting to the db
     db_connection = sqlite3.connect('../Data/Database/job_database.db')
     db_cursor = db_connection.cursor()
 
     # insert current transaction details
-    insert_record = (current_transaction, user, rows_fetched, unique_rows,
-                     current_time, current_time)
-    db_cursor.execute('insert into transaction_details values (?,?,?,?,?,?)', insert_record)
+    update_record = (1, rows_fetched, unique_rows,
+                     current_time, current_transaction)
+    db_cursor.execute("""update transaction_details 
+                         set transaction_ended = ?,
+                             records_fetched = ?,
+                             unique_records = ?,
+                             modified_date_time = ?
+                             where transaction_id = ? """, update_record)
     db_connection.commit()
     db_connection.close()
 
 
-def load_create_jobs(user):
+def load_create_jobs():
     # arrange the columns and return all records as single file
     job_data = arrange_columns()
     rows_fetched = job_data.shape[0]
@@ -39,12 +43,11 @@ def load_create_jobs(user):
 
     # fetch the last transaction and time
     db_cursor.execute('select max(transaction_id) from transaction_details')
-    last_transaction = db_cursor.fetchall()[0][0]
-    current_transaction = last_transaction + 1
+    current_transaction = db_cursor.fetchall()[0][0]
     current_time = datetime.now().strftime("%d/%m/%Y %H:%M:%S")
 
     # insert transaction details
-    load_transaction(user, rows_fetched, unique_rows, current_transaction, current_time)
+    end_transaction(rows_fetched, unique_rows, current_transaction, current_time)
 
     # writing the transaction details to the dataframe
     unique_job_data['transaction_id'] = current_transaction
@@ -64,5 +67,5 @@ def clean_temp():
         remove(file_path)
 
 
-load_create_jobs(sys.argv[1])
+load_create_jobs()
 clean_temp()
