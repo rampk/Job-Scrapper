@@ -29,7 +29,7 @@ class SimplyHired(scrapy.Spider):
             # From the list obtained above, extracting job_link using Xpath
             job_link = job.xpath('.//div[@class="jobposting-title"]/a/@href').extract()
             job_link = "".join(job_link)
-            job_link = "https://www.workopolis.com" + job_link
+            job_link = "https://www.simplyhired.ca" + job_link
 
             # From the list obtained above, extracting company_name using Xpath
             company_name = job.xpath('.//div/span[@class="JobPosting-labelWithIcon jobposting-company"]/text()').extract()
