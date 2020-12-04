@@ -10,8 +10,8 @@ class SimplyHired(scrapy.Spider):
     ]
 
     # Initialising the filter(job_title, job_location using __init__ method
-    def __init__(self, job_title='machine learning'):
-        job_title = job_title.replace(' ', '+')
+    def __init__(self, job_title='machine-learning'):
+        job_title = job_title.replace('-', '+')
         self.start_urls = [f'https://www.simplyhired.ca/search?q={job_title}&l=']
         super().__init__()
 

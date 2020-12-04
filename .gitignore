@@ -1,5 +1,4 @@
 .idea/
 jobscrapper_scrapy/*.csv
 *__pycache__/
-web_app/
 
