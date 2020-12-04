@@ -21,7 +21,7 @@ def arrange_columns():
 
 
 def unique_jobs(job_links, job_data):
-    # job_links = pd.DataFrame(job_links, columns=['job_link'])
-    job_data = pd.concat([job_data, job_links])
-    job_data.drop_duplicates(subset=['job_link'], keep=False, inplace=True)
+    job_data = pd.merge(job_data, job_links,
+                        indicator=True, how='outer').query('_merge=="left_only"').drop('_merge', axis=1)
+    job_data.drop_duplicates(subset=['job_link'], inplace=True)
     return job_data

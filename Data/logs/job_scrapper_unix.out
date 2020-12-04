@@ -1,0 +1,14 @@
+Script start_time Sat, Dec 5, 2020 3:52:27 AM
+Received Data-Scientist Vancouver simplyhired
+Activating virtual environment
+Activated virtual environment
+Loading the transacation table
+Loaded the transacation table
+====================================================================================================
+Scrapping start time Sat, Dec 5, 2020 3:52:27 AM
+Started crawling simplyhired
+Completed overall scrapping in
+====================================================================================================
+Started loading data into DB
+Loaded into DB
+Process completed

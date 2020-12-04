@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>Canadian Job Scrapper</h2>
+
+<form action="/home" method="post">
+  <label for="job-title">Job Title:</label><br>
+  <input type="text" id="job-title" name="job-title" value="Data Scientist"><br><br>
+  <label for="job-location">Job Title:</label><br>
+  <div class="dropdown">
+    <select id="job-location" name="job-location">
+      <option name = "Toronto"> Toronto </option>
+      <option name = "Montreal"> Montreal </option>
+      <option name = "Vancouver"> Vancouver </option>
+      <option name = "All" SELECTED> All </option>
+    </select>
+  </div> <br><br>
+  <label for="job-title">Websites to scrap:</label><br>
+  <input type="checkbox" id="indeed" name="website" value="indeed">
+  <label for="indeed"> Indeed</label><br>
+  <input type="checkbox" id="simplyhired" name="website" value="simplyhired">
+  <label for="simplyhired"> Simply Hired</label><br>
+  <input type="checkbox" id="wowjobs" name="website" value="wowjobs">
+  <label for="wowjobs"> Wow Jobs</label><br>
+  <input type="checkbox" id="workopolis" name="website" value="workopolis">
+  <label for="workopolis"> Workopolis</label><br>
+  <p> If website is not selected, Indeed will be selected as default</p>
+
+  <input type="submit" value="Submit">
+</form> 
+
+{% with messages = get_flashed_messages() %}
+  {% if messages %}
+    {% for message in messages %}
+        <p>{{message}} </p>
+    {% endfor %}
+  {% else %}
+    <p>If you click the "Submit" button, the request to crawl webpages will be send.</p>
+  {% endif %}
+{% endwith %}
+
+</body>
+</html>

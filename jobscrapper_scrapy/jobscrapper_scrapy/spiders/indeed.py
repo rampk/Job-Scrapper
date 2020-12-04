@@ -5,9 +5,12 @@ from ..items import JobscrapperScrapyItem
 class IndeedSpider(scrapy.Spider):
     name = 'indeed'
 
-    def __init__(self, job_title='Data Science'):
-        job_title = job_title.replace(' ', '+')
-        self.start_urls = [f'https://ca.indeed.com/jobs?q={job_title}'+'&l=']
+    def __init__(self, job_title='Data-Science', job_location='Toronto'):
+        job_title = job_title.replace('-', '+')
+        if job_location == "All":
+            self.start_urls = [f'https://ca.indeed.com/jobs?q={job_title}&l=']
+        else:
+            self.start_urls = [f'https://ca.indeed.com/jobs?q={job_title}&l={job_location}']
         super().__init__()
 
     def parse(self, response):
