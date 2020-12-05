@@ -10,9 +10,12 @@ class Wowjobs(scrapy.Spider):
     ]
 
     # Initialising the filter(job_title, job_location using __init__ method
-    def __init__(self, job_title='machine-learning'):
+    def __init__(self, job_title='machine-learning', job_location='Toronto'):
         job_title = job_title.replace('-', '+')
-        self.start_urls = [f'https://www.wowjobs.ca/BrowseResults.aspx?q={job_title}&l=']
+        if job_location == "All":
+            self.start_urls = [f'https://www.wowjobs.ca/BrowseResults.aspx?q={job_title}&l=']
+        else:
+            self.start_urls = [f'https://www.wowjobs.ca/BrowseResults.aspx?q={job_title}&l={job_location}']
         super().__init__()
 
     # Main script that parse the scrapy with all the items given
@@ -23,7 +26,8 @@ class Wowjobs(scrapy.Spider):
         job_list = response.xpath('//div[@class="result js-job"]')
         for job in job_list:
             # From the list obtained above, extracting job title using Xpath
-            job_title = job.xpath('.//div/a/text()').extract()
+            job_title = job.xpath('.//div//a[@ class="link js-job-link"]/text()').extract()
+            # job.xpath('.//div//a/text()').extract() --old code
             job_title = "".join(job_title)  # Using join to extract the strings from list or can use extract()[0]
 
             # From the list obtained above, extracting job_link using Xpath
