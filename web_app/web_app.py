@@ -20,11 +20,5 @@ def home_page():
     return render_template('home.html')
 
 
-@app.route('/test', methods=['POST', 'GET'])
-def test():
-    # subprocess.Popen(['unix_crawler.sh'], cwd="../", shell=True)
-    return str(request.form.getlist('website'))
-
-
 if __name__ == "__main__":
     app.run()

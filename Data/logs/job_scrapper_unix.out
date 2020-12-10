@@ -1,12 +1,15 @@
-Script start_time Sat, Dec 5, 2020 3:52:27 AM
-Received Data-Scientist Vancouver simplyhired
+Script start_time Thu, Dec 10, 2020 3:47:08 PM
+Received Data-Scientist All indeed simplyhired wowjobs workopolis
 Activating virtual environment
 Activated virtual environment
 Loading the transacation table
 Loaded the transacation table
 ====================================================================================================
-Scrapping start time Sat, Dec 5, 2020 3:52:27 AM
+Scrapping start time Thu, Dec 10, 2020 3:47:08 PM
 Started crawling simplyhired
+Started crawling indeed
+Started crawling wowjobs
+Started crawling workopolis
 Completed overall scrapping in
 ====================================================================================================
 Started loading data into DB
